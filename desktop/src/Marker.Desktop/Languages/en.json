@@ -1,0 +1,19 @@
+{
+  "Title": "Marker Desktop", "Subtitle": "Turn documents into structured content. Entirely on this PC.",
+  "Offline": "OFFLINE · CPU", "Files": "Source documents", "AddFiles": "Add files", "Clear": "Clear list",
+  "Empty": "Add PDF documents or images to begin.", "Output": "Output folder", "Browse": "Browse", "Format": "Output format",
+  "Options": "Recognition settings", "Fast": "Fast · selective OCR", "Balanced": "Balanced · full model layout",
+  "Mode": "Processing mode", "Force": "Re-read all pages with OCR", "ForceHelp": "Use when embedded text is broken. Slower; may change correctly extracted text.",
+  "Disable": "Skip OCR", "DisableHelp": "Use embedded PDF text only. Scanned text and image equations may be omitted.",
+  "Strip": "Ignore existing OCR", "StripHelp": "Re-read pages with an existing hidden OCR text layer.",
+  "Headers": "Keep page headers and footers", "Debug": "Save diagnostic files", "DebugHelp": "Save intermediate page images and layout details with the results.",
+  "LocalNotice": "Models are included. No API key, account, or internet connection is needed. OCR on CPU may take time.",
+  "Convert": "Convert documents", "Cancel": "Cancel", "OpenOutput": "Open results", "OpenWiki": "Help / Wiki", "OpenLogs": "Open logs",
+  "Ready": "Ready", "Starting": "Starting local engine…", "Processing": "Processing", "Completed": "Completed", "Failed": "Failed", "Cancelled": "Cancelled",
+  "MissingEngine": "The offline engine is missing. Install the complete offline package.",
+  "ChooseInput": "Add at least one PDF or image.", "ChooseOutput": "Choose an output folder.", "InvalidRange": "Page range must use zero-based numbers, for example 0,2-5.",
+  "Pages": "Pages (optional, zero-based)", "PagesHelp": "Leave blank for all pages. Example: 0,2-5. Applied to every file in the list.",
+  "Details": "Activity", "ConfirmExit": "Conversion is running. Cancel it and close?", "Yes": "Close and cancel", "No": "Keep working",
+  "NoExternalLlm": "External LLM correction is not enabled in this offline edition.", "SaveError": "Could not save preferences", "ValidationError": "Check settings",
+  "CpuWarning": "Balanced mode uses more OCR and is usually slower on CPU.", "Selected": "documents selected", "Errors": "errors", "CompleteWithErrors": "Finished with errors. See the activity log."
+}

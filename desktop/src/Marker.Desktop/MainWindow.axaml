@@ -1,0 +1,54 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="Marker.Desktop.MainWindow"
+        Title="Marker Desktop" Width="1120" Height="840" MinWidth="900" MinHeight="700" Background="#F4F6FA" FontFamily="avares://Marker.Desktop/Assets/NotoSansCJKkr-Regular.otf#Noto Sans CJK KR">
+  <Grid RowDefinitions="Auto,*,Auto">
+    <Border Background="White" Padding="28,22" BorderBrush="#E2E8F0" BorderThickness="0,0,0,1">
+      <Grid ColumnDefinitions="*,Auto,Auto">
+        <StackPanel Spacing="5"><TextBlock Text="Marker Desktop" FontSize="26" FontWeight="Bold" /><TextBlock Text="{Binding L[Subtitle]}" Classes="caption" /></StackPanel>
+        <Border Grid.Column="1" Background="#E8F5EE" CornerRadius="5" Padding="12,6" VerticalAlignment="Center" Margin="0,0,18,0"><TextBlock Text="{Binding L[Offline]}" Foreground="#23764B" FontWeight="SemiBold" FontSize="12" /></Border>
+        <ComboBox Grid.Column="2" x:Name="LanguagePicker" Width="125" VerticalAlignment="Center" SelectionChanged="LanguageChanged"><ComboBoxItem Content="한국어" /><ComboBoxItem Content="English" /></ComboBox>
+      </Grid>
+    </Border>
+    <Grid Grid.Row="1" ColumnDefinitions="*,360" Margin="24" ColumnSpacing="20">
+      <Grid RowDefinitions="Auto,*,Auto,Auto,Auto,Auto" RowSpacing="12">
+        <Grid ColumnDefinitions="*,Auto,Auto"><TextBlock Text="{Binding L[Files]}" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" /><Button Grid.Column="1" x:Name="AddButton" Content="{Binding L[AddFiles]}" Click="AddFiles" Margin="0,0,8,0" /><Button Grid.Column="2" x:Name="ClearButton" Content="{Binding L[Clear]}" Click="ClearFiles" /></Grid>
+        <Border Grid.Row="1" Background="White" BorderBrush="#DAE1EA" BorderThickness="1" CornerRadius="8" Padding="12">
+          <Grid><ListBox x:Name="FilesList" ItemsSource="{Binding Files}" Background="Transparent"><ListBox.ItemTemplate><DataTemplate><TextBlock Text="{Binding}" TextWrapping="Wrap" Margin="4,8" /></DataTemplate></ListBox.ItemTemplate></ListBox><TextBlock x:Name="EmptyLabel" Text="{Binding L[Empty]}" Foreground="#64748B" HorizontalAlignment="Center" VerticalAlignment="Center" /></Grid>
+        </Border>
+        <TextBlock Grid.Row="2" Text="{Binding L[Output]}" Classes="label" />
+        <Grid Grid.Row="3" ColumnDefinitions="*,Auto" ColumnSpacing="8"><TextBox x:Name="OutputPath" Watermark="Marker Results" /><Button Grid.Column="1" x:Name="BrowseButton" Content="{Binding L[Browse]}" Click="ChooseFolder" /></Grid>
+        <TextBlock Grid.Row="4" Text="{Binding L[Details]}" Classes="label" Margin="0,12,0,0" />
+        <TextBox Grid.Row="5" x:Name="Activity" Height="140" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" FontSize="12" Background="White" />
+      </Grid>
+      <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel x:Name="OptionsPanel" Spacing="12" Margin="0,0,8,0">
+          <TextBlock Text="{Binding L[Options]}" FontSize="18" FontWeight="SemiBold" />
+          <TextBlock Text="{Binding L[Format]}" Classes="label" />
+          <ComboBox x:Name="FormatPicker" HorizontalAlignment="Stretch" SelectedIndex="0"><ComboBoxItem Content="Markdown" /><ComboBoxItem Content="JSON" /><ComboBoxItem Content="HTML" /><ComboBoxItem Content="Chunks (JSON)" /></ComboBox>
+          <TextBlock Text="{Binding L[Mode]}" Classes="label" />
+          <ComboBox x:Name="ModePicker" HorizontalAlignment="Stretch" SelectedIndex="0"><ComboBoxItem Content="{Binding L[Fast]}" /><ComboBoxItem Content="{Binding L[Balanced]}" /></ComboBox>
+          <TextBlock Text="{Binding L[CpuWarning]}" Classes="caption" />
+          <TextBlock Text="{Binding L[Pages]}" Classes="label" /><TextBox x:Name="PageRange" Watermark="0,2-5" /><TextBlock Text="{Binding L[PagesHelp]}" Classes="caption" />
+          <CheckBox x:Name="ForceOcr" Content="{Binding L[Force]}" IsCheckedChanged="OcrChanged" /><TextBlock Text="{Binding L[ForceHelp]}" Classes="caption" />
+          <CheckBox x:Name="DisableOcr" Content="{Binding L[Disable]}" IsCheckedChanged="OcrChanged" /><TextBlock Text="{Binding L[DisableHelp]}" Classes="caption" />
+          <CheckBox x:Name="StripOcr" Content="{Binding L[Strip]}" /><TextBlock Text="{Binding L[StripHelp]}" Classes="caption" />
+          <CheckBox x:Name="Headers" Content="{Binding L[Headers]}" />
+          <CheckBox x:Name="DebugFiles" Content="{Binding L[Debug]}" /><TextBlock Text="{Binding L[DebugHelp]}" Classes="caption" />
+          <Border Background="#E9EEF7" Padding="12" CornerRadius="6"><StackPanel Spacing="8"><TextBlock Text="{Binding L[LocalNotice]}" Classes="caption" /><TextBlock Text="{Binding L[NoExternalLlm]}" Classes="caption" /></StackPanel></Border>
+        </StackPanel>
+      </ScrollViewer>
+    </Grid>
+    <Border Grid.Row="2" Background="White" Padding="24,16" BorderBrush="#E2E8F0" BorderThickness="0,1,0,0">
+      <StackPanel Spacing="10">
+        <ProgressBar x:Name="Progress" Height="4" Minimum="0" Maximum="100" />
+        <Grid ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="8">
+          <TextBlock x:Name="Status" Text="{Binding L[Ready]}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+          <Button Grid.Column="1" Content="{Binding L[OpenWiki]}" Click="OpenWiki" />
+          <Button Grid.Column="2" Content="{Binding L[OpenLogs]}" Click="OpenLogs" />
+          <Button Grid.Column="3" Content="{Binding L[OpenOutput]}" Click="OpenOutput" />
+          <Button Grid.Column="4" x:Name="CancelButton" Content="{Binding L[Cancel]}" Click="CancelConversion" IsEnabled="False" />
+          <Button Grid.Column="5" x:Name="ConvertButton" Content="{Binding L[Convert]}" Click="ConvertFiles" Background="#2857C5" Foreground="White" FontWeight="SemiBold" />
+        </Grid>
+      </StackPanel>
+    </Border>
+  </Grid>
+</Window>
